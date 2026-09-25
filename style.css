@@ -687,3 +687,34 @@ svg {
   .js-reveal .section, .js-reveal .card { opacity: 1; transform: none; }
   body { background: #fff; color: #000; }
 }
+
+/* ---------- Portrait ---------- */
+.portrait {
+  margin: 0 0 40px;
+  max-width: 420px;
+}
+.portrait img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  background: var(--bg-soft);
+}
+.portrait figcaption {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+.portrait figcaption::before {
+  content: "";
+  width: 18px;
+  height: 2px;
+  background: var(--accent);
+}
