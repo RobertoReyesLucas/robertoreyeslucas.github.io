@@ -594,12 +594,6 @@ svg {
 }
 .badge:hover { border-color: var(--accent); color: var(--accent); }
 
-.badge-accent {
-  background: var(--accent-soft);
-  border-color: transparent;
-  color: var(--accent-strong);
-}
-
 /* ---------- Contact ---------- */
 .contact-panel {
   text-align: center;
