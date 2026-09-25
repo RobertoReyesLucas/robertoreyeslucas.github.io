@@ -767,3 +767,7 @@ svg {
 @media (max-width: 720px) {
   .exp-item { grid-template-columns: minmax(0, 1fr); gap: 6px; }
 }
+
+/* Timeline sits under the About text */
+.about-path { margin-top: 48px; }
+.about-path .side-title { margin-top: 0; }
