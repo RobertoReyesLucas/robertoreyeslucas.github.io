@@ -1,0 +1,39 @@
+---
+layout: default
+title: "Blog: AI-Driven Campaign Management"
+description: "A blog series by Roberto Reyes Lucas on how AI is changing lead capture and campaign management, with original consumer and practitioner research."
+---
+{%- assign series = site.data.series -%}
+    <section class="blog-hero container">
+      <p class="eyebrow">Blog · New series</p>
+      <h1>{{ series.title }}</h1>
+      <p class="lede">{{ series.description }}</p>
+      <p class="blog-feed"><a href="/blog/feed.xml">Subscribe via RSS</a></p>
+    </section>
+
+    <section class="section container blog-series" aria-labelledby="series-title">
+      <div class="section-head">
+        <h2 id="series-title" class="section-num">The series</h2>
+      </div>
+      {% include series-list.html %}
+    </section>
+
+    {%- assign other_posts = site.posts | where_exp: "p", "p.part == nil" -%}
+    {%- if other_posts.size > 0 %}
+    <section class="section container" aria-labelledby="more-title">
+      <div class="section-head">
+        <h2 id="more-title">More posts</h2>
+      </div>
+      <ol class="series-list">
+        {%- for post in other_posts %}
+        <li class="series-item is-published">
+          <div class="series-body">
+            <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
+            <p class="series-desc">{{ post.description | default: post.excerpt | strip_html | truncate: 200 }}</p>
+            <p class="series-meta"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%-d %b %Y" }}</time> · {% include read-time.html content=post.content %}</p>
+          </div>
+        </li>
+        {%- endfor %}
+      </ol>
+    </section>
+    {%- endif %}

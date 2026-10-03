@@ -1,0 +1,31 @@
+title: Roberto Reyes Lucas
+description: Digital marketing, AI automation and web development.
+url: https://robertoreyeslucas.github.io
+baseurl: ""
+author: Roberto Reyes Lucas
+lang: en
+timezone: Europe/Dublin
+
+permalink: /blog/:title/
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+  footnote_backlink: "↩"
+
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+
+feed:
+  path: blog/feed.xml
+
+exclude:
+  - README.md
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post

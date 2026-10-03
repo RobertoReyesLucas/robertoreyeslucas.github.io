@@ -1,0 +1,25 @@
+{%- if page.url == "/" -%}{%- assign home = "" -%}{%- else -%}{%- assign home = "/" -%}{%- endif -%}
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <nav class="nav container" aria-label="Main navigation">
+      <a class="brand" href="{% if page.url == '/' %}#top{% else %}/{% endif %}" aria-label="Roberto Reyes Lucas, home">
+        <span class="brand-mark" aria-hidden="true">
+          <img class="logo-light" src="/assets/logo-mark.png" width="155" height="108" alt="">
+          <img class="logo-dark" src="/assets/logo-mark-dark.png" width="155" height="108" alt="">
+        </span>
+        <span class="brand-name">Roberto Reyes Lucas</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="{{ home }}#about">About</a></li>
+        <li><a href="{{ home }}#expertise">Expertise</a></li>
+        <li><a href="{{ home }}#skills">Skills</a></li>
+        <li class="nav-blog"><a href="/blog/"{% if page.url contains "/blog/" %} aria-current="page"{% endif %}>Blog</a></li>
+        <li><a href="{{ home }}#contact">Contact</a></li>
+      </ul>
+      <button class="theme-toggle" type="button" aria-label="Switch colour theme">
+        <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2 12h2.5M19.5 12H22M4.2 19.8 6 18M18 6l1.8-1.8"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11Z"/></svg>
+      </button>
+    </nav>
+  </header>

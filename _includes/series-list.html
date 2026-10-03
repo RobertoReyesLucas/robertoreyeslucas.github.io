@@ -1,0 +1,21 @@
+{%- assign series = site.data.series -%}
+<ol class="series-list{% if include.compact %} series-list--compact{% endif %}">
+  {%- for item in series.parts -%}
+  {%- assign post = site.posts | where: "part", item.part | first -%}
+  <li class="series-item{% if post %} is-published{% endif %}">
+    <span class="series-num">{{ item.part | prepend: "0" | slice: -2, 2 }}</span>
+    <div class="series-body">
+      {%- if post %}
+      <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
+      {%- unless include.compact %}
+      <p class="series-desc">{{ post.description | default: post.excerpt | strip_html | truncate: 200 }}</p>
+      {%- endunless %}
+      <p class="series-meta"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%-d %b %Y" }}</time> · {% include read-time.html content=post.content %}</p>
+      {%- else %}
+      <h3>{{ item.title }}</h3>
+      <p class="series-meta"><span class="series-soon">Coming {{ item.planned | date: "%-d %b" }}</span></p>
+      {%- endif %}
+    </div>
+  </li>
+  {%- endfor -%}
+</ol>

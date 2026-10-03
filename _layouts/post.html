@@ -1,0 +1,96 @@
+---
+layout: default
+---
+{%- assign series = site.data.series -%}
+{%- assign total = series.parts | size -%}
+    <article class="post container">
+      <header class="post-header">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/blog/">Blog</a>
+          {%- if page.part %} <span aria-hidden="true">/</span> <span>Part {{ page.part }} of {{ total }}</span>{% endif %}
+        </nav>
+        {%- if page.part %}
+        <p class="post-kicker">{{ series.title }} · Part {{ page.part }}</p>
+        {%- endif %}
+        <h1>{{ page.title }}</h1>
+        {%- if page.description %}
+        <p class="post-dek">{{ page.description }}</p>
+        {%- endif %}
+        <p class="post-meta">
+          <span>By Roberto Reyes Lucas</span>
+          <span aria-hidden="true">·</span>
+          <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%-d %B %Y" }}</time>
+          <span aria-hidden="true">·</span>
+          <span>{% include read-time.html content=content %}</span>
+        </p>
+      </header>
+
+      {%- if page.image %}
+      <figure class="post-cover">
+        <img src="{{ page.image }}" alt="{{ page.image_alt | default: '' | escape }}">
+        {%- if page.image_caption %}
+        <figcaption>{{ page.image_caption }}</figcaption>
+        {%- endif %}
+      </figure>
+      {%- endif %}
+
+      <div class="post-body">
+{{ content }}
+      </div>
+
+      <footer class="post-footer">
+        {%- if page.tags.size > 0 %}
+        <ul class="badges post-tags" aria-label="Topics">
+          {%- for tag in page.tags %}
+          <li class="badge">{{ tag }}</li>
+          {%- endfor %}
+        </ul>
+        {%- endif %}
+
+        <div class="post-share">
+          <span>Share this post</span>
+          <a class="btn btn-ghost btn-sm" href="https://www.linkedin.com/sharing/share-offsite/?url={{ page.url | absolute_url | uri_escape }}" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn btn-ghost btn-sm" href="mailto:?subject={{ page.title | uri_escape }}&amp;body={{ page.url | absolute_url | uri_escape }}">Email</a>
+        </div>
+
+        <div class="author-box">
+          <img src="/assets/roberto-reyes-lucas.jpg" width="72" height="72" alt="" loading="lazy">
+          <div>
+            <p class="author-name">Roberto Reyes Lucas</p>
+            <p>Digital marketing specialist from Málaga, studying an MSc in Digital Marketing at Maynooth University. I work on SEO, paid campaigns, web development and automation with n8n.</p>
+            <p><a href="/">About me</a> · <a href="https://www.linkedin.com/in/roberto-reyes-lucas-809b29183/" target="_blank" rel="noopener">LinkedIn</a></p>
+          </div>
+        </div>
+
+        {%- if page.part %}
+        {%- assign prev_part = page.part | minus: 1 -%}
+        {%- assign next_part = page.part | plus: 1 -%}
+        {%- assign prev_post = site.posts | where: "part", prev_part | first -%}
+        {%- assign next_post = site.posts | where: "part", next_part | first -%}
+        {%- assign next_plan = series.parts | where: "part", next_part | first -%}
+        <nav class="series-nav" aria-label="More from this series">
+          {%- if prev_post %}
+          <a class="series-nav-link" href="{{ prev_post.url }}">
+            <span>← Part {{ prev_part }}</span>
+            <strong>{{ prev_post.title }}</strong>
+          </a>
+          {%- else %}
+          <span></span>
+          {%- endif %}
+          {%- if next_post %}
+          <a class="series-nav-link is-next" href="{{ next_post.url }}">
+            <span>Part {{ next_part }} →</span>
+            <strong>{{ next_post.title }}</strong>
+          </a>
+          {%- elsif next_plan %}
+          <div class="series-nav-link is-next is-soon">
+            <span>Part {{ next_part }} · Coming {{ next_plan.planned | date: "%-d %b" }}</span>
+            <strong>{{ next_plan.title }}</strong>
+          </div>
+          {%- endif %}
+        </nav>
+        {%- endif %}
+
+        <p class="post-back"><a href="/blog/">← All posts</a></p>
+      </footer>
+    </article>
