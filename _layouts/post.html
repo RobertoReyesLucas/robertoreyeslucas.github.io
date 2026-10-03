@@ -1,16 +1,16 @@
 ---
 layout: default
 ---
-{%- assign series = site.data.series -%}
+{%- assign series = site.data.series | where: "id", page.series | first -%}
 {%- assign total = series.parts | size -%}
     <article class="post container">
       <header class="post-header">
         <nav class="breadcrumb" aria-label="Breadcrumb">
           <a href="/blog/">Blog</a>
-          {%- if page.part %} <span aria-hidden="true">/</span> <span>Part {{ page.part }} of {{ total }}</span>{% endif %}
+          {%- if series %} <span aria-hidden="true">/</span> <a href="/blog/#{{ series.id }}">{{ series.title }}</a>{% endif %}
         </nav>
-        {%- if page.part %}
-        <p class="post-kicker">{{ series.title }} · Part {{ page.part }}</p>
+        {%- if series %}
+        <p class="post-kicker">Part {{ page.part }} of {{ total }}</p>
         {%- endif %}
         <h1>{{ page.title }}</h1>
         {%- if page.description %}
@@ -19,7 +19,7 @@ layout: default
         <p class="post-meta">
           <span>By Roberto Reyes Lucas</span>
           <span aria-hidden="true">·</span>
-          <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%-d %B %Y" }}</time>
+          <time datetime="{{ page.date | date: '%Y-%m' }}">{{ page.date | date: "%B %Y" }}</time>
           <span aria-hidden="true">·</span>
           <span>{% include read-time.html content=content %}</span>
         </p>
@@ -62,11 +62,12 @@ layout: default
           </div>
         </div>
 
-        {%- if page.part %}
+        {%- if series %}
+        {%- assign series_posts = site.posts | where: "series", series.id -%}
         {%- assign prev_part = page.part | minus: 1 -%}
         {%- assign next_part = page.part | plus: 1 -%}
-        {%- assign prev_post = site.posts | where: "part", prev_part | first -%}
-        {%- assign next_post = site.posts | where: "part", next_part | first -%}
+        {%- assign prev_post = series_posts | where: "part", prev_part | first -%}
+        {%- assign next_post = series_posts | where: "part", next_part | first -%}
         {%- assign next_plan = series.parts | where: "part", next_part | first -%}
         <nav class="series-nav" aria-label="More from this series">
           {%- if prev_post %}
@@ -84,7 +85,7 @@ layout: default
           </a>
           {%- elsif next_plan %}
           <div class="series-nav-link is-next is-soon">
-            <span>Part {{ next_part }} · Coming {{ next_plan.planned | date: "%-d %b" }}</span>
+            <span>Part {{ next_part }} · Coming {{ next_plan.planned | date: "%B %Y" }}</span>
             <strong>{{ next_plan.title }}</strong>
           </div>
           {%- endif %}

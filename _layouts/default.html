@@ -49,8 +49,9 @@
     {%- if page.tags.size > 0 %}
     "keywords": {{ page.tags | join: ", " | jsonify }},
     {%- endif %}
-    {%- if page.part %}
-    "isPartOf": { "@type": "CreativeWorkSeries", "name": {{ site.data.series.title | jsonify }}, "url": "{{ '/blog/' | absolute_url }}" },
+    {%- assign ps = site.data.series | where: "id", page.series | first %}
+    {%- if ps %}
+    "isPartOf": { "@type": "CreativeWorkSeries", "name": {{ ps.title | jsonify }}, "url": "{{ '/blog/' | absolute_url }}#{{ ps.id }}" },
     {%- endif %}
     "author": { "@id": "https://robertoreyeslucas.github.io/#person", "@type": "Person", "name": "Roberto Reyes Lucas", "url": "https://robertoreyeslucas.github.io/" }
   }
@@ -61,7 +62,7 @@
   {
     "@context": "https://schema.org",
     "@type": "Blog",
-    "name": {{ site.data.series.title | jsonify }},
+    "name": "Roberto Reyes Lucas · Blog",
     "description": {{ desc | jsonify }},
     "url": "{{ page.url | absolute_url }}",
     "inLanguage": "en",

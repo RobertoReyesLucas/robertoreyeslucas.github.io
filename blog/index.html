@@ -1,36 +1,40 @@
 ---
 layout: default
-title: "Blog: AI-Driven Campaign Management"
-description: "A blog series by Roberto Reyes Lucas on how AI is changing lead capture and campaign management, with original consumer and practitioner research."
+title: Blog
+description: "Articles by Roberto Reyes Lucas on digital marketing, campaign strategy and automation, including the research series AI-Driven Lead Management."
 ---
-{%- assign series = site.data.series -%}
     <section class="blog-hero container">
-      <p class="eyebrow">Blog · New series</p>
-      <h1>{{ series.title }}</h1>
-      <p class="lede">{{ series.description }}</p>
-      <p class="blog-feed"><a href="/blog/feed.xml">Subscribe via RSS</a></p>
+      <p class="eyebrow">Blog</p>
+      <h1>Notes on marketing, campaigns &amp; automation</h1>
+      <p class="lede">I write about digital marketing, campaign strategy and the tools I use to automate my work, including research I carry out during my MSc at Maynooth University.</p>
     </section>
 
-    <section class="section container blog-series" aria-labelledby="series-title">
+    <section class="section container blog-series" aria-labelledby="series-heading">
       <div class="section-head">
-        <h2 id="series-title" class="section-num">The series</h2>
+        <h2 id="series-heading" class="section-num">Series</h2>
       </div>
-      {% include series-list.html %}
+      {%- for s in site.data.series %}
+      <div class="series-block" id="{{ s.id }}">
+        <h3>{{ s.title }}</h3>
+        <p class="series-intro">{{ s.description }}</p>
+        {% include series-list.html series=s %}
+      </div>
+      {%- endfor %}
     </section>
 
-    {%- assign other_posts = site.posts | where_exp: "p", "p.part == nil" -%}
+    {%- assign other_posts = site.posts | where_exp: "p", "p.series == nil" -%}
     {%- if other_posts.size > 0 %}
-    <section class="section container" aria-labelledby="more-title">
+    <section class="section container blog-series" aria-labelledby="more-title">
       <div class="section-head">
-        <h2 id="more-title">More posts</h2>
+        <h2 id="more-title" class="section-num">Other posts</h2>
       </div>
       <ol class="series-list">
         {%- for post in other_posts %}
         <li class="series-item is-published">
           <div class="series-body">
-            <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
+            <h4><a href="{{ post.url }}">{{ post.title }}</a></h4>
             <p class="series-desc">{{ post.description | default: post.excerpt | strip_html | truncate: 200 }}</p>
-            <p class="series-meta"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%-d %b %Y" }}</time> · {% include read-time.html content=post.content %}</p>
+            <p class="series-meta"><time datetime="{{ post.date | date: '%Y-%m' }}">{{ post.date | date: "%B %Y" }}</time> · {% include read-time.html content=post.content %}</p>
           </div>
         </li>
         {%- endfor %}

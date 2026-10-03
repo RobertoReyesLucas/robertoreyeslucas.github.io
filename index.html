@@ -402,18 +402,7 @@
       </div>
     </section>
 
-    <!-- Blog -->
-    <section class="section container" id="blog" aria-labelledby="blog-title">
-      <div class="section-head">
-        <p class="section-num">04</p>
-        <h2 id="blog-title">Blog</h2>
-      </div>
-      <p class="section-intro">
-        <strong>{{ site.data.series.title }}.</strong> {{ site.data.series.description }}
-      </p>
-      {% include series-list.html compact=true %}
-      <p class="blog-cta"><a class="btn btn-ghost" href="/blog/">Visit the blog <span aria-hidden="true">→</span></a></p>
-    </section>
+{% include home-blog.html %}
 
     <!-- Contact -->
     <section class="section container" id="contact" aria-labelledby="contact-title">

@@ -21,6 +21,28 @@
   var year = document.getElementById('year');
   if (year) year.textContent = new Date().getFullYear();
 
+  var carousel = document.querySelector('.carousel');
+  var controls = document.querySelector('.carousel-controls');
+  if (carousel && controls) {
+    var btns = controls.querySelectorAll('.carousel-btn');
+    var update = function () {
+      var max = carousel.scrollWidth - carousel.clientWidth;
+      controls.hidden = max <= 4;
+      btns[0].disabled = carousel.scrollLeft <= 4;
+      btns[1].disabled = carousel.scrollLeft >= max - 4;
+    };
+    btns.forEach(function (b) {
+      b.addEventListener('click', function () {
+        var card = carousel.querySelector('.post-card');
+        var step = card ? card.offsetWidth + 16 : carousel.clientWidth;
+        carousel.scrollBy({ left: step * Number(b.dataset.dir), behavior: 'smooth' });
+      });
+    });
+    carousel.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  }
+
   var items = document.querySelectorAll('.section, .card');
   if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     root.classList.add('js-reveal');

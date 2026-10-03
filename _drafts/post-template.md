@@ -2,6 +2,7 @@
 title: "Your post title"
 description: "One or two sentences that sum up the post. Shown on Google, LinkedIn and the blog list (aim for 150-160 characters)."
 date: 2026-10-16 09:00:00 +0100
+series: ai-lead-management
 part: 1
 tags: [Lead generation, Conversational AI, Campaign strategy]
 image: /assets/blog/part-1-cover.jpg

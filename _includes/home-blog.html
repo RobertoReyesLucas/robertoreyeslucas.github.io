@@ -1,0 +1,42 @@
+    <section class="section container home-blog" id="blog" aria-labelledby="blog-title">
+      <div class="home-blog-head">
+        <div class="section-head">
+          <p class="section-num">04</p>
+          <h2 id="blog-title">Blog</h2>
+        </div>
+        <div class="carousel-controls" hidden>
+          <button class="carousel-btn" type="button" data-dir="-1" aria-label="Previous posts"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+          <button class="carousel-btn" type="button" data-dir="1" aria-label="Next posts"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+        </div>
+      </div>
+      <p class="section-intro">I also write a blog about digital marketing, campaigns and automation.</p>
+
+      <div class="carousel" tabindex="0" aria-label="Latest blog posts">
+        {%- for post in site.posts limit: 6 %}
+        {%- assign ps = site.data.series | where: "id", post.series | first %}
+        <a class="post-card" href="{{ post.url }}">
+          <span class="post-card-kicker">{% if ps %}{{ ps.title }} · Part {{ post.part }}{% else %}Article{% endif %}</span>
+          <strong class="post-card-title">{{ post.title }}</strong>
+          <span class="post-card-meta">{{ post.date | date: "%B %Y" }} · Read <span aria-hidden="true">→</span></span>
+        </a>
+        {%- endfor %}
+        {%- for s in site.data.series %}
+        {%- assign series_posts = site.posts | where: "series", s.id %}
+        {%- for item in s.parts %}
+        {%- assign done = series_posts | where: "part", item.part | first %}
+        {%- unless done %}
+        <div class="post-card is-soon">
+          <span class="post-card-kicker">Next up · {{ s.title }} · Part {{ item.part }}</span>
+          <strong class="post-card-title">{{ item.title }}</strong>
+          <span class="post-card-meta">Coming {{ item.planned | date: "%B %Y" }}</span>
+        </div>
+          {%- break %}
+        {%- endunless %}
+        {%- endfor %}
+        {%- endfor %}
+        <a class="post-card is-all" href="/blog/">
+          <strong class="post-card-title">Visit the blog</strong>
+          <span class="post-card-meta">All posts and series <span aria-hidden="true">→</span></span>
+        </a>
+      </div>
+    </section>
