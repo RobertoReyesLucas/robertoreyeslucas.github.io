@@ -1129,3 +1129,14 @@ a.series-nav-link:hover { border-color: var(--accent); color: var(--text); }
   .series-nav-link.is-next { text-align: left; }
   .author-box { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* Images with a light and a dark version */
+.only-dark { display: none !important; }
+:root[data-theme="dark"] .only-light { display: none !important; }
+:root[data-theme="dark"] .only-dark { display: block !important; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .only-light { display: none !important; }
+  :root:not([data-theme="light"]) .only-dark { display: block !important; }
+}
+.post-body .chart { margin: 2em 0; }
+.post-body .chart img { width: 100%; }

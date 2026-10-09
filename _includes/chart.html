@@ -1,0 +1,7 @@
+<figure class="chart">
+  <img class="only-light" src="{{ include.light }}" alt="{{ include.alt | escape }}" width="{{ include.width | default: 1600 }}" height="{{ include.height | default: 900 }}" loading="lazy" decoding="async">
+  <img class="only-dark" src="{{ include.dark }}" alt="{{ include.alt | escape }}" width="{{ include.width | default: 1600 }}" height="{{ include.height | default: 900 }}" loading="lazy" decoding="async">
+  {%- if include.caption %}
+  <figcaption>{{ include.caption }}</figcaption>
+  {%- endif %}
+</figure>

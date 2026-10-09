@@ -16,8 +16,10 @@ Introduction paragraph.
 
 Text with a reference to a source.[^1]
 
-![Describe the chart](/assets/blog/part-1-chart.png)
-*Figure 1. Caption for the chart.*
+![Describe the image](/assets/blog/part-1-photo.jpg)
+*Optional caption for the image.*
+
+{% include chart.html light="/assets/blog/forms-vs-chatbots-light.png" dark="/assets/blog/forms-vs-chatbots-dark.png" alt="Bar chart: 14% prefer an online form, 86% prefer a chatbot or have no preference" caption="Figure 1. Source: Drift (2019)." %}
 
 > A key quote from an interview or a source.
 
