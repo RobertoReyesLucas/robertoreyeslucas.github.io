@@ -1140,3 +1140,28 @@ a.series-nav-link:hover { border-color: var(--accent); color: var(--text); }
 }
 .post-body .chart { margin: 2em 0; }
 .post-body .chart img { width: 100%; }
+
+/* References block at the end of a post */
+.post-body #references {
+  margin-top: 3.2em;
+  padding-top: 1.4em;
+  border-top: 1px solid var(--border);
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+.post-body #references ~ p,
+.post-body #references ~ ul li,
+.post-body #references ~ ol li {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+.post-body #references ~ p {
+  margin-top: 0.8em;
+  padding-left: 1.6em;
+  text-indent: -1.6em;
+}
