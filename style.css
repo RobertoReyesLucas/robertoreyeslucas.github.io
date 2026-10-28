@@ -1165,3 +1165,6 @@ a.series-nav-link:hover { border-color: var(--accent); color: var(--text); }
   padding-left: 1.6em;
   text-indent: -1.6em;
 }
+
+.post-body ul + p,
+.post-body ol + p { margin-top: 1.1em; }
