@@ -48,7 +48,7 @@ These results translate into four practical rules for anyone running lead captur
 
 2. ***Ask for the phone number and budget last.*** Collect name, email and dates first, and only ask for sensitive data once the user has received something useful, such as matching listings or a live price.
 
-3. ***Say it is an AI in the first message.*** Users expect it, and the law now requires it.
+3. ***Say it is an AI in the first message.*** Users expect it, and the EU AI Act now requires it (see part two).
 
 4. ***Keep the human handoff one click away.*** Show the option from the start, and trigger it automatically for price negotiations, complaints and high-value bookings.
 
@@ -60,7 +60,7 @@ This was a small, exploratory convenience sample, with a mix of respondents from
 
 The biggest limitation is that a survey measures what people say they would do, which is not always what they do in practice. My own results show how wide that gap can be: 71% said a chatbot would get them information faster than a form, yet only 3% would choose one to book. Real campaign data, such as conversion and drop-off rates, would be needed to confirm these findings.
 
-Consumers are clear that they want a person available for the difficult moments, so the next question is whether businesses can actually provide one. In part four, I interview a marketing practitioner about running AI funnels in real client campaigns, including whether that human handover is affordable and whether real conversion data tells the same story as my survey.
+Consumers are clear that they want a person available for the difficult moments, so the next question is whether businesses can actually provide one. In part four, I interview a marketing practitioner about running AI funnels in real client campaigns, including whether that human handoff is affordable and whether real conversion data tells the same story as my survey.
 
 ## References
 
